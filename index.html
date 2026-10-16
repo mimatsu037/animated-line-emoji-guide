@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="ChatGPTとCodexで、24個の動くLINE絵文字を作る初心者向け3STEPガイド。コピペ用プロンプト・確認チェックつき。">
+  <title>AIで作る 動くLINE絵文字ガイド｜みな</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23e88f80'/%3E%3Ccircle cx='22' cy='27' r='6' fill='white'/%3E%3Ccircle cx='42' cy='27' r='6' fill='white'/%3E%3Cpath d='M20 40q12 10 24 0' fill='none' stroke='white' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+  <script>tailwind.config={theme:{extend:{colors:{ink:'#493e3c',coral:'#e88f80',deep:'#d87368',cream:'#fff8f3',blush:'#fbe9e3',gold:'#d4a94f',line:'#06c755',lime:'#b7ef46'},fontFamily:{sans:['Noto Sans JP','sans-serif'],round:['Zen Maru Gothic','sans-serif']}}}}</script>
+  <style>
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f8efea;color:#493e3c;font-family:'Noto Sans JP',sans-serif;line-break:strict;word-break:normal;overflow-wrap:break-word;text-wrap:pretty}.keep{white-space:nowrap}.paper{background-image:radial-gradient(#efc9bf 1px,transparent 1px);background-size:18px 18px}.marker{background:linear-gradient(transparent 62%,#ffe1a8 62%)}.body-copy{font-size:1rem;line-height:1.9}.prompt{white-space:pre-wrap;word-break:break-word}.copy-toast{transition:.25s}.prompt-box summary{list-style:none}.prompt-box summary::-webkit-details-marker{display:none}.prompt-box[open] .chevron{transform:rotate(180deg)}.chevron{transition:transform .2s}.step-line{position:relative}.step-line:before{content:"";position:absolute;left:20px;top:48px;bottom:-38px;width:2px;background:linear-gradient(#e88f80,#f4ded7)}.step-line:last-child:before{display:none}.check-row{display:flex;align-items:flex-start;gap:.75rem;padding:.75rem .85rem;border-radius:.9rem;background:#fff;border:1px solid #f4ded7;cursor:pointer}.check-row input{width:1.25rem;height:1.25rem;flex:0 0 auto;margin-top:.12rem;accent-color:#d87368}.check-row:has(input:checked){background:#fff2ee;color:#8e4d47}.check-row:has(input:checked) span{text-decoration:line-through;text-decoration-color:#d87368}.emoji-stage{position:relative;height:180px;max-width:370px;margin:1.75rem auto 0}.emoji-card{position:absolute;width:82px;height:82px;border-radius:24px;display:grid;place-items:center;font-size:46px;background:white;border:3px solid rgba(255,255,255,.9);box-shadow:0 12px 28px rgba(94,65,58,.14)}.emoji-card:nth-child(1){left:2%;top:34px;animation:bob 1.8s ease-in-out infinite}.emoji-card:nth-child(2){left:28%;top:0;animation:tilt 2.2s ease-in-out infinite}.emoji-card:nth-child(3){right:24%;top:74px;animation:pulse 1.55s ease-in-out infinite}.emoji-card:nth-child(4){right:0;top:22px;animation:wave 1.75s ease-in-out infinite}.grid-chip{position:absolute;left:50%;bottom:0;transform:translateX(-50%);background:#493e3c;color:#fff;border-radius:999px;padding:.5rem 1rem;font-size:.75rem;font-weight:900;white-space:nowrap}.cta-image{animation:cta-breathe 2.6s ease-in-out infinite;transition:transform .2s,filter .2s;filter:drop-shadow(0 10px 14px rgba(216,115,104,.22))}.cta-image:hover{filter:saturate(1.08) drop-shadow(0 12px 18px rgba(216,115,104,.30))}.cta-image:active{animation:none;transform:scale(.975)}@supports (word-break:auto-phrase){body{word-break:auto-phrase}}@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}@keyframes tilt{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(7deg) translateY(-5px)}}@keyframes pulse{0%,100%{transform:scale(.94)}50%{transform:scale(1.08)}}@keyframes wave{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(8deg)}}@keyframes cta-breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-5px) scale(1.012)}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.emoji-card,.cta-image{animation:none}.chevron{transition:none}}@media(max-width:640px){.body-copy{font-size:1rem;line-height:1.9}.prompt{font-size:.8rem;line-height:1.7}.emoji-card{width:72px;height:72px;font-size:40px}.emoji-stage{height:165px}}
+  </style>
+</head>
+<body>
+<div id="toast" class="copy-toast fixed z-50 top-4 left-1/2 -translate-x-1/2 -translate-y-3 opacity-0 pointer-events-none bg-ink text-white text-sm font-bold px-5 py-3 rounded-full shadow-xl">コピーしました ✓</div>
+<main id="top" class="max-w-[680px] min-h-screen mx-auto bg-white shadow-2xl overflow-hidden">
+  <header class="paper relative px-5 pt-10 pb-9 text-center overflow-hidden">
+    <div class="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-blush"></div><div class="absolute top-24 -left-10 w-28 h-28 rounded-full bg-[#fff0c9]"></div>
+    <div class="relative">
+      <span class="inline-flex items-center gap-1.5 bg-deep text-white text-xs font-black tracking-wider px-4 py-1.5 rounded-full shadow">初心者向け・コピペで進める保存版</span>
+      <p class="mt-5 text-base font-bold text-deep">絵が描けなくても、プログラミング未経験でも大丈夫</p>
+      <h1 class="font-round text-[28px] sm:text-4xl font-black leading-[1.35] mt-2 text-ink"><span class="keep">ChatGPT×Codexで</span><br><span class="keep text-deep marker">動くLINE絵文字を</span><br><span class="keep">24個まとめて作る方法</span></h1>
+      <p class="mt-4 text-sm sm:text-base leading-7 font-bold text-gray-600">キャラクターを決めたら、AIと一緒に<br>「描く・動かす・申請する」を3STEPで。</p>
+      <div class="emoji-stage" aria-label="動くLINE絵文字のイメージ"><span class="emoji-card">😊</span><span class="emoji-card">🐰</span><span class="emoji-card">💗</span><span class="emoji-card">👏</span><span class="grid-chip">24個をまとめて作成</span></div>
+      <div class="mt-5 bg-white/90 rounded-2xl border border-white shadow-sm p-3 flex items-center gap-3 max-w-sm mx-auto text-left"><img src="assets/mina-avatar.png" alt="みな" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow"><div><p class="text-xs text-gray-500 font-bold">AI×SNSで在宅収入を叶える主婦</p><p class="font-black text-base">みな <span class="font-normal text-xs text-deep">@mina_ai_fukugyo</span></p></div></div>
+    </div>
+  </header>
+
+  <section class="px-6 py-9 bg-cream/60">
+    <p class="text-center text-base font-black text-deep">こんな気持ち、ありませんか？</p>
+    <div class="mt-5 space-y-3 body-copy">
+      <div class="rounded-2xl bg-white border border-blush p-4 flex gap-3"><span>💭</span><p><span class="keep">動くLINE絵文字を</span><wbr><span class="keep">作ってみたいけれど、</span><strong>何から始めればいいか分からない</strong></p></div>
+      <div class="rounded-2xl bg-white border border-blush p-4 flex gap-3"><span>💭</span><p><span class="keep">パソコンやデザインに</span><wbr><span class="keep">自信がなくて、</span><strong>自分には無理だと思ってしまう</strong></p></div>
+      <div class="rounded-2xl bg-white border border-blush p-4 flex gap-3"><span>💭</span><p><span class="keep">ChatGPTは触って</span><wbr><span class="keep">いるけれど、</span><strong>作品として完成させたことがない</strong></p></div>
+      <div class="rounded-2xl bg-white border border-blush p-4 flex gap-3"><span>💭</span><p><span class="keep">まとまった時間が</span><wbr><span class="keep">取れず、</span><strong>また今度…で止まっている</strong></p></div>
+    </div>
+  </section>
+
+  <section class="px-6 py-10"><div class="rounded-3xl bg-gradient-to-br from-blush to-cream p-6 border border-[#f2d5cc]">
+    <img src="assets/my-story-banner.png" alt="MY STORY 私もずっと、仕方ないと思っていました。" class="w-full aspect-video object-cover rounded-2xl shadow-sm border border-white/70">
+    <div class="mt-4 body-copy space-y-3"><p>私も最初からAIを使いこなせたわけではありません。子どもの夜泣きについて聞くくらいで、仕事に使うなんて想像もしていませんでした。</p><p>でも、難しい操作を全部覚えるのではなく、<strong>やりたいことを日本語で伝えて、一つずつ形にする</strong>ことから始めました。</p><p>動くLINE絵文字も同じです。絵を描くところはChatGPT、画像を分けて動かす作業はCodex。あなたは「どんなキャラを作りたいか」を決めれば、最初の一歩を踏み出せます。</p></div>
+    <p class="mt-5 bg-white rounded-2xl p-4 text-base font-black leading-7 text-center shadow-sm">このガイドは、<br><span class="text-deep">「AIを作品づくりに使ってみたい」</span><br>という初心者さんのために作りました。</p>
+  </div></section>
+
+  <section class="bg-ink text-white px-6 py-10 text-center">
+    <p class="text-xs font-bold text-[#ffd8cf] tracking-wider">3つの役割を分けるだけ</p><h2 class="font-round text-xl font-black mt-2">全部を自分でやらなくていい<br>AIとLINEに任せる仕組み</h2>
+    <div class="grid grid-cols-3 gap-2 mt-6"><div class="bg-white/10 rounded-2xl p-3"><p class="text-3xl">🎨</p><p class="text-sm font-bold mt-2">ChatGPT<br><span class="text-xs font-normal text-white/70">24個を描く</span></p></div><div class="bg-white/10 rounded-2xl p-3"><p class="text-3xl">⚙️</p><p class="text-sm font-bold mt-2">Codex<br><span class="text-xs font-normal text-white/70">切って動かす</span></p></div><div class="bg-white/10 rounded-2xl p-3"><p class="text-3xl">💬</p><p class="text-sm font-bold mt-2">LINE<br><span class="text-xs font-normal text-white/70">申請・販売</span></p></div></div>
+    <div class="mt-7 bg-white/10 rounded-2xl p-4 text-left"><p class="text-xs font-black text-[#ffd8cf]">用意するもの</p><div class="mt-3 space-y-2 text-sm font-bold"><p>✓ パソコン</p><p>✓ 画像生成が使えるChatGPT</p><p>✓ LINE Creators Marketのアカウント</p></div></div>
+    <p class="body-copy text-white/80 mt-5">プログラミングを書く必要はありません。Codexに日本語の指示をまとめて送り、生成・検証・ZIP作成までお願いする流れです。</p>
+  </section>
+
+  <section class="px-6 py-10 bg-[#effaf2] border-y border-[#ccebd4]"><div class="text-center"><p class="text-sm font-black text-line">先にここだけ押さえれば安心</p><h2 class="font-round text-xl font-black mt-2"><span class="keep">動くLINE絵文字の</span><wbr><span class="keep">基本条件</span></h2></div>
+    <div class="grid grid-cols-2 gap-2 mt-6 text-center text-sm"><div class="bg-white rounded-2xl p-4 border border-[#d8eddd]"><p class="text-2xl">🔢</p><p class="font-black mt-1">8〜40個</p></div><div class="bg-white rounded-2xl p-4 border border-[#d8eddd]"><p class="text-2xl">📐</p><p class="font-black mt-1">180×180px</p></div><div class="bg-white rounded-2xl p-4 border border-[#d8eddd]"><p class="text-2xl">🎞️</p><p class="font-black mt-1">5〜20フレーム</p></div><div class="bg-white rounded-2xl p-4 border border-[#d8eddd]"><p class="text-2xl">🪶</p><p class="font-black mt-1">1個300KB以下</p></div></div>
+    <p class="mt-5 text-sm leading-7">背景は透過、RGB、72dpi以上。1個あたり4秒以内・1〜4ループです。今回は見栄えと使いやすさのバランスがよい<strong>24個セット</strong>を作ります。</p>
+    <a href="https://creator.line.me/ja/guideline/animationemoji/" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 text-sm font-bold underline text-line">LINE公式の最新ガイドラインを確認する</a>
+  </section>
+
+  <section class="px-6 py-11">
+    <div class="text-center"><span class="bg-blush text-deep font-black text-xs px-3 py-1 rounded-full">コピペで進める</span><h2 class="font-round text-2xl font-black mt-3"><span class="keep">24個を完成させる</span><wbr><span class="keep">3STEP</span></h2></div>
+
+    <article class="step-line mt-10"><div class="flex items-center gap-3"><span class="w-10 h-10 rounded-full bg-deep text-white grid place-items-center font-black z-10">1</span><div><p class="text-xs font-black text-deep">STEP 1</p><h3 class="font-round text-xl font-black"><span class="keep">ChatGPTで24個の</span><wbr><span class="keep">絵を作る</span></h3></div></div><div class="ml-[52px] mt-4">
+      <p class="body-copy">24回に分けて描くと、顔つきや線の太さが少しずつズレやすくなります。そこで<strong>6列×4行の1枚画像</strong>として、同じキャラクターをまとめて作ります。</p>
+      <details class="prompt-box mt-5 rounded-2xl border-2 border-blush overflow-hidden"><summary class="bg-blush px-4 py-4 flex justify-between items-center cursor-pointer"><span class="text-sm font-black">24個まとめて作るプロンプト</span><span class="chevron text-deep text-xl">⌄</span></summary><div class="p-4 bg-white"><button onclick="copyPrompt('prompt1')" class="mb-3 bg-deep text-white text-sm font-black px-4 py-2 rounded-full">全文をコピー</button><pre id="prompt1" class="prompt text-sm leading-7">動くLINE絵文字の元絵として、【ころんと丸い小さなペンギン】の感情・ポーズ違いを24点作り、1枚のキャラクターシートにまとめてください。
+
+【シートの構成】
+・横6マス×縦4マスのグリッドにする
+・各マスの中央に、ペンギンを1体ずつ配置する
+・24体の大きさ、顔立ち、配色、線の雰囲気をそろえる
+・隣のマスへ絵がはみ出したり、キャラクター同士が触れたりしないよう余白を取る
+
+【イラストの方向性】
+・仕上がりは【やさしいパステルイラスト風】
+・文字やセリフは使わず、表情と全身の動きだけで気持ちを伝える
+・LINEのトーク画面で小さくなっても分かるよう、輪郭は太め、形はシンプルにする
+・24体すべてを同じオリジナルキャラクターとして描く
+
+【背景】
+・シート全面を #00FF00 の単色背景にする
+・ペンギン本体や小物には、#00FF00 に近い黄緑色を使わない
+
+【左上からの並び順】
+1 よろこぶ／2 泣く／3 怒る／4 驚く／5 照れる／6 拍手
+7 いいね／8 手を振る／9 眠る／10 考える／11 心配／12 大好き
+13 にっこり／14 イヤイヤ／15 お辞儀／16 お願い／17 OK／18 激怒
+19 よろしく／20 乾杯／21 急ぐ／22 ガッツポーズ／23 大はしゃぎ／24 ぐったり
+
+画像内には番号、グリッド線、説明文、透かし、ロゴを入れないでください。</pre></div></details>
+      <div class="mt-4 border-l-4 border-gold bg-[#fffaf0] p-4 text-sm leading-7"><strong>そのまま使ってOK：</strong>今回はペンギンで作れる内容にしています。雰囲気を変えたい場合だけ「やさしいパステルイラスト風」の部分を好みに合わせて変更してください。</div>
+      <div class="mt-4 bg-[#f3ffd6] border border-[#d7ef98] rounded-2xl p-4 text-sm leading-7"><strong>なぜライム色？</strong><br>あとで背景だけを機械的に消しやすくするためです。完成画像は必ず<strong>sheet.png</strong>という名前で保存し、新しいフォルダに入れておきます。</div>
+    </div></article>
+
+    <article class="step-line mt-14"><div class="flex items-center gap-3"><span class="w-10 h-10 rounded-full bg-deep text-white grid place-items-center font-black z-10">2</span><div><p class="text-xs font-black text-deep">STEP 2</p><h3 class="font-round text-xl font-black"><span class="keep">Codexで切り分けて</span><wbr><span class="keep">動かす</span></h3></div></div><div class="ml-[52px] mt-4">
+      <p class="body-copy">sheet.pngのフォルダをCodexの作業場所として選び、下の指示を1回で送ります。24個の切り出し・透過・動き・容量調整・確認ページ・ZIP作成までまとめて依頼します。</p>
+      <div class="mt-5 grid gap-2 text-sm"><div class="flex gap-3 items-center rounded-2xl bg-cream p-3"><span class="w-8 h-8 rounded-full bg-deep text-white grid place-items-center font-black shrink-0">1</span><p>パソコンでCodexを開く</p></div><div class="flex gap-3 items-center rounded-2xl bg-cream p-3"><span class="w-8 h-8 rounded-full bg-deep text-white grid place-items-center font-black shrink-0">2</span><p>新しいチャットを作る</p></div><div class="flex gap-3 items-center rounded-2xl bg-cream p-3"><span class="w-8 h-8 rounded-full bg-deep text-white grid place-items-center font-black shrink-0">3</span><p>sheet.pngを入れたフォルダを選ぶ</p></div></div>
+      <div class="mt-7 rounded-3xl border border-[#cdd9f1] bg-gradient-to-br from-[#f3f6ff] to-white p-5 shadow-sm">
+        <div class="flex items-center gap-3"><span class="w-11 h-11 rounded-2xl bg-[#4d6fb3] text-white grid place-items-center text-2xl shrink-0">📱</span><div><p class="text-xs font-black text-[#4d6fb3]">最初の1回だけ設定</p><h4 class="font-round text-lg font-black mt-0.5"><span class="keep">Codexをスマホアプリと</span><wbr><span class="keep">連携する方法</span></h4></div></div>
+        <p class="mt-4 text-sm leading-7">パソコンで動くCodexを、スマホのChatGPTアプリにある<strong>Remote</strong>から操作できます。外出先でも、作業の開始・進み具合の確認・許可・完成結果のチェックができます。</p>
+        <div class="mt-5 space-y-3 text-sm">
+          <div class="rounded-2xl bg-white border border-[#dfe6f5] p-4"><div class="flex gap-3"><span class="w-8 h-8 rounded-full bg-[#4d6fb3] text-white grid place-items-center font-black shrink-0">1</span><div><p class="font-black">同じアカウントでログイン</p><p class="mt-1 leading-6 text-gray-600">パソコンとスマホのChatGPTアプリを、同じアカウント・同じワークスペースで開きます。</p></div></div></div>
+          <div class="rounded-2xl bg-white border border-[#dfe6f5] p-4"><div class="flex gap-3"><span class="w-8 h-8 rounded-full bg-[#4d6fb3] text-white grid place-items-center font-black shrink-0">2</span><div><p class="font-black">パソコンにQRコードを表示</p><p class="mt-1 leading-6 text-gray-600">デスクトップ版ChatGPTの<strong>設定 → 接続 → このMacまたはPCを操作</strong>を開き、「設定」または「追加」を選びます。</p></div></div></div>
+          <div class="rounded-2xl bg-white border border-[#dfe6f5] p-4"><div class="flex gap-3"><span class="w-8 h-8 rounded-full bg-[#4d6fb3] text-white grid place-items-center font-black shrink-0">3</span><div><p class="font-black">スマホで読み取って接続</p><p class="mt-1 leading-6 text-gray-600">表示されたQRコードをスマホで読み取り、連携するパソコンを選びます。ペアリングは最初の1回だけです。</p></div></div></div>
+          <div class="rounded-2xl bg-white border border-[#dfe6f5] p-4"><div class="flex gap-3"><span class="w-8 h-8 rounded-full bg-[#4d6fb3] text-white grid place-items-center font-black shrink-0">4</span><div><p class="font-black">スマホのRemoteからCodexを開く</p><p class="mt-1 leading-6 text-gray-600">ChatGPTアプリでRemoteを開き、接続したパソコンと作業フォルダを選びます。新しい作業を始めることも、途中の作業を続けることもできます。</p></div></div></div>
+        </div>
+        <div class="mt-5 grid grid-cols-3 gap-2 text-center"><div class="rounded-xl bg-[#eaf0ff] p-3"><p class="text-2xl">▶️</p><p class="text-xs font-black mt-1">作業を開始</p></div><div class="rounded-xl bg-[#eaf0ff] p-3"><p class="text-2xl">✅</p><p class="text-xs font-black mt-1">許可を確認</p></div><div class="rounded-xl bg-[#eaf0ff] p-3"><p class="text-2xl">👀</p><p class="text-xs font-black mt-1">結果を確認</p></div></div>
+        <div class="mt-5 rounded-2xl bg-[#fff7e6] border border-[#f0d59c] p-4 text-sm leading-7"><strong>ここが大事：</strong>実際の画像処理はパソコン側で行われます。連携中はパソコンをスリープさせず、オンラインの状態にしておきましょう。</div>
+        <p class="mt-4 text-xs leading-6 text-gray-500">画面名や利用可否は、アプリのバージョン・アカウント設定・接続するパソコンによって異なる場合があります。</p>
+        <a href="https://developers.openai.com/training/walkthroughs/working-on-your-phone" target="_blank" rel="noopener noreferrer" class="inline-block mt-3 text-sm font-bold underline text-[#4d6fb3]">OpenAI公式のスマホ連携手順を見る</a>
+      </div>
+      <details class="prompt-box mt-5 rounded-2xl border-2 border-blush overflow-hidden"><summary class="bg-blush px-4 py-4 flex justify-between items-center cursor-pointer"><span class="text-sm font-black">Codexに送る実行プロンプト</span><span class="chevron text-deep text-xl">⌄</span></summary><div class="p-4 bg-white"><button onclick="copyPrompt('prompt2')" class="mb-3 bg-deep text-white text-sm font-black px-4 py-2 rounded-full">全文をコピー</button><pre id="prompt2" class="prompt text-sm leading-7">目的：この作業フォルダの sheet.png を使い、LINE Creators Marketへ提出できる「動く絵文字」24個とタブ画像、確認用ページ、提出用ZIPを完成させてください。必要な処理コードは自分で作成し、実行と最終検査まで行ってください。
+
+【入力画像について】
+sheet.png は、6列×4行に24種類のペンギンが並んだシートです。背景色は #00FF00 です。
+
+【切り出しと透過】
+1. 背景色だけが続く縦横の空白を利用して、24個の領域を見つける
+2. 24領域を正しく取得できない場合は、画像を壊したまま進めず処理を中止する
+3. 各キャラクターの外側につながっている緑背景だけを透明にし、絵の内側にある必要な色は残す
+4. 透明化後の薄い緑のにじみを自然に補正する
+5. 絵柄の外周で整え、180×180pxの透明画像の中央へ大きく配置する
+
+【動かし方】
+・各絵文字は8コマで構成し、1周1秒の動きを3回繰り返す
+・ペンギンを分解せず、1つのまとまりとして移動、回転、伸縮を加える
+・ループの終わりから最初へ戻る瞬間が不自然にならないよう調整する
+・見た目が同一のフレームを作らない
+
+動きは次を目安に、感情が一目で伝わるよう調整してください。
+1 二段階でぴょんと喜ぶ／2 下を向いて小さく震える／3 左右へ素早く揺れる／4 一瞬だけ大きく跳ねる
+5 小さく身をよじる／6 テンポよく上下する／7 手前へ弾む／8 ゆっくり左右へスイングする
+9 呼吸するように伸び縮み／10 斜めに傾いて戻る／11 体をすぼめて揺れる／12 ハートの鼓動のように膨らむ
+13 穏やかに左右へ揺れる／14 すばやく横振りする／15 深く沈んで戻る／16 控えめに二度おじぎする
+17 小さく一度うなずく／18 強く振動して少し拡大／19 軽く前へ傾く／20 上へ持ち上がって戻る
+21 前へ進むように弾む／22 勢いよく背伸びする／23 大きく二度ジャンプ／24 ゆっくり縮んで力が抜ける
+
+【書き出し条件】
+・絵文字：001.png〜024.png
+・形式：APNG、180×180px、RGB、72dpi以上、背景透過
+・1ファイル300KB以下、5〜20フレーム、1〜4ループ、合計4秒以内
+・001.pngの先頭フレームを使い、96×74pxの静止画 tab.png も作る
+
+【確認と納品】
+・24個を一括再生・停止でき、白・黒・市松模様の背景を切り替えられる preview.html を作る
+・提出用ZIPの直下には001.png〜024.pngとtab.pngだけを入れる
+・ZIP全体を20MB以下にする
+・完成後、全画像をコードで再読込し、寸法、容量、フレーム数、再生時間、ループ、解像度、透明部分、重複フレーム、APNG構造を検査する
+
+検査に通らないファイルが1つでもあれば完了扱いにせず、問題の番号と理由を示してください。すべて合格したら、生成数、検査結果、ZIPの保存場所と容量を報告してください。</pre></div></details>
+      <p class="mt-4 text-xs leading-6 text-gray-500">※Codexの画面や操作はアップデートで変わる場合があります。作業フォルダに画像を入れ、目的と完了条件を具体的に伝えるのがポイントです。</p>
+    </div></article>
+
+    <article class="step-line mt-14"><div class="flex items-center gap-3"><span class="w-10 h-10 rounded-full bg-deep text-white grid place-items-center font-black z-10">3</span><div><p class="text-xs font-black text-deep">STEP 3</p><h3 class="font-round text-xl font-black"><span class="keep">確認してLINEへ</span><wbr><span class="keep">申請する</span></h3></div></div><div class="ml-[52px] mt-4">
+      <p class="body-copy">preview.htmlで24個を同時に動かし、崩れや色かぶりを確認します。問題があるものは「○番だけ作り直して」とCodexに伝えればOKです。</p>
+      <div class="mt-5 bg-cream rounded-2xl p-4" data-checklist="preview"><div class="flex items-center justify-between mb-3"><p class="text-sm font-black">完成前の4チェック</p><p class="text-xs font-bold text-deep"><span class="check-count">0</span>/4 完了</p></div><div class="space-y-2"><label class="check-row"><input id="p1" type="checkbox"><span>顔と体が分かれたり、形が崩れたりしていない</span></label><label class="check-row"><input id="p2" type="checkbox"><span>隣の絵が混ざっていない</span></label><label class="check-row"><input id="p3" type="checkbox"><span>元画像と色が大きく変わっていない</span></label><label class="check-row"><input id="p4" type="checkbox"><span>フチで切れず、小さくても表情が分かる</span></label></div></div>
+      <a href="https://creator.line.me/ja/" target="_blank" rel="noopener noreferrer" class="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 rounded-2xl bg-line px-4 py-3.5 text-center text-sm font-black text-white shadow-md transition hover:brightness-95 active:scale-[.98]" aria-label="LINE Creators Market公式サイトを開く"><span class="keep">LINE Creators Market</span><span class="keep">公式サイトを開く ↗</span></a>
+      <div class="mt-5 grid gap-2 text-sm"><div class="rounded-2xl border border-blush p-4"><strong>① 新規登録</strong><p class="mt-1 text-gray-600">LINE Creators Marketで「絵文字」を選び、販売情報を入力</p></div><div class="rounded-2xl border border-blush p-4"><strong>② ZIPをアップロード</strong><p class="mt-1 text-gray-600">Codexが作ったZIPをまとめて登録</p></div><div class="rounded-2xl border border-blush p-4"><strong>③ メイン画像を4つ選ぶ</strong><p class="mt-1 text-gray-600">表情と動きがはっきり違う4つがおすすめ</p></div><div class="rounded-2xl border border-blush p-4"><strong>④ リクエスト</strong><p class="mt-1 text-gray-600">最終確認して審査を申請</p></div></div>
+    </div></article>
+  </section>
+
+  <section class="px-6 py-10 bg-cream border-y border-blush"><div class="text-center"><p class="text-sm font-black text-deep">忙しい人は分けて進める</p><h2 class="font-round text-xl font-black mt-2">3日で「1セット」を完成させる<br>すきま時間プラン</h2></div><div class="mt-6 space-y-3"><div class="bg-white rounded-2xl p-4 border border-blush flex gap-3"><span class="font-black text-deep">DAY1</span><p class="text-sm leading-7"><strong>20分：</strong>キャラクターを決め、ChatGPTで24個の画像を作る</p></div><div class="bg-white rounded-2xl p-4 border border-blush flex gap-3"><span class="font-black text-deep">DAY2</span><p class="text-sm leading-7"><strong>30分：</strong>Codexに動きとZIP作成をお願いする</p></div><div class="bg-white rounded-2xl p-4 border border-blush flex gap-3"><span class="font-black text-deep">DAY3</span><p class="text-sm leading-7"><strong>30分：</strong>24個を確認し、LINEへ登録する</p></div></div><p class="mt-5 text-center text-base font-black leading-7">完璧なキャラを悩み続けるより、<br><span class="marker">まず1セット完成させてみる。</span><br>最初の目標はここで十分です。</p></section>
+
+  <section class="px-6 py-10"><h2 class="font-round text-xl font-black text-center">申請前の「守る」チェック</h2><div class="mt-6 bg-[#fff7e6] border border-[#f0d59c] rounded-3xl p-5" data-checklist="rights"><p class="text-base font-black">AIで作れたもの ＝ そのまま販売してよいもの、ではありません。</p><div class="flex justify-end mt-3"><p class="text-xs font-bold text-deep"><span class="check-count">0</span>/5 完了</p></div><div class="mt-2 space-y-2 text-sm"><label class="check-row"><input id="r1" type="checkbox"><span>有名キャラクターや実在の人物に似せていない</span></label><label class="check-row"><input id="r2" type="checkbox"><span>ブランド名、ロゴ、作品名を使っていない</span></label><label class="check-row"><input id="r3" type="checkbox"><span>特定の作家・作品の「○○風」を指定していない</span></label><label class="check-row"><input id="r4" type="checkbox"><span>小さく表示しても表情と動きが伝わる</span></label><label class="check-row"><input id="r5" type="checkbox"><span>申請前にLINE公式の最新規約を確認した</span></label></div></div><p class="mt-4 text-xs leading-6 text-gray-500">本ガイドは制作手順の一例です。審査通過や販売成果を保証するものではありません。LINE Creators Marketや各AIサービスの仕様・規約は変更される場合があります。</p></section>
+
+  <section class="relative px-5 pt-14 pb-12 bg-gradient-to-b from-[#fff4ef] to-white text-center border-t border-blush">
+    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-white rounded-full px-5 py-2 shadow font-black text-xs whitespace-nowrap">ここから先はLINE登録者限定 🎁</div>
+    <p class="text-sm font-black text-deep tracking-wider">AIを「楽しい」で終わらせず、収入につなげたいママへ</p><h2 class="font-round text-2xl font-black leading-9 mt-2">『おうちワーク始め方ガイド』<br><span class="text-deep">5大特典を無料プレゼント中</span></h2>
+    <a href="https://sub.aione.co.jp/line/open/QFSiLvkqYbDv?mtid=8XSHI7buqP4T" target="_blank" rel="noopener noreferrer" aria-label="LINE登録限定の5大特典を受け取る"><img src="assets/line-benefits-cta.jpg" alt="AIマネタイズの教科書 5大特典をタップして受け取る" class="cta-image w-full rounded-2xl mt-5 shadow-lg border border-blush"></a>
+    <p class="mt-4 body-copy text-gray-600">何を選び、どうAIに頼み、SNSから収益につなげるか。迷いやすい順番を<strong>『AIマネタイズの教科書』</strong>にまとめました。</p>
+    <div class="mt-6 text-left bg-white rounded-3xl p-5 border border-blush shadow-sm"><p class="text-center text-sm font-black text-deep mb-4">登録でもらえる5大特典</p><div class="space-y-4"><div class="flex gap-3 items-start"><span class="w-8 h-8 rounded-full bg-deep text-white grid place-items-center text-sm font-black shrink-0">1</span><p class="text-sm font-black">今、始めやすいAIマネタイズの選び方</p></div><div class="flex gap-3 items-start"><span class="w-8 h-8 rounded-full bg-deep text-white grid place-items-center text-sm font-black shrink-0">2</span><p class="text-sm font-black">ChatGPT収益化プロンプト集</p></div><div class="flex gap-3 items-start"><span class="w-8 h-8 rounded-full bg-deep text-white grid place-items-center text-sm font-black shrink-0">3</span><p class="text-sm font-black">AIマネタイズ実践テンプレート</p></div><div class="flex gap-3 items-start"><span class="w-8 h-8 rounded-full bg-deep text-white grid place-items-center text-sm font-black shrink-0">4</span><p class="text-sm font-black">収益化に役立つ生成AIツール3選</p></div><div class="flex gap-3 items-start"><span class="w-8 h-8 rounded-full bg-deep text-white grid place-items-center text-sm font-black shrink-0">5</span><p class="text-sm font-black">AI×SNSで収益につながったリアル事例</p></div></div></div>
+    <div class="mt-5 bg-[#effaf2] border border-[#ccebd4] rounded-2xl p-4 text-left"><p class="text-sm font-black text-line">登録後に分かること</p><p class="text-sm leading-7 mt-1">「私なら何から始める？」を考えられるように、初心者向けの順番でご案内します。AIに詳しくなくても大丈夫です。</p></div>
+    <p class="mt-4 text-xs text-gray-500 leading-6">画像をタップするとLINE登録ページが開きます。配布内容や期間は予告なく変更・終了する場合があります。</p>
+  </section>
+  <footer class="bg-ink text-white/60 text-center px-5 py-8 text-xs leading-6"><a href="https://www.instagram.com/mina_ai_fukugyo/" target="_blank" rel="noopener noreferrer" class="text-white font-bold">Instagram @mina_ai_fukugyo</a><p class="mt-2">みな｜AI×SNSで在宅収入を叶える主婦</p><p class="mt-5">© 2026 みな. All Rights Reserved.</p></footer>
+</main>
+<script>
+  function copyPrompt(id){const text=document.getElementById(id).innerText;const done=()=>{const t=document.getElementById('toast');t.classList.remove('opacity-0','-translate-y-3');t.classList.add('opacity-100');setTimeout(()=>{t.classList.add('opacity-0','-translate-y-3');t.classList.remove('opacity-100')},1600)};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done)}else{const a=document.createElement('textarea');a.value=text;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();done()}}
+  document.querySelectorAll('[data-checklist]').forEach(list=>{const inputs=[...list.querySelectorAll('input[type="checkbox"]')];inputs.forEach(input=>{input.checked=localStorage.getItem('mina-line-emoji-'+input.id)==='1';input.addEventListener('change',()=>{localStorage.setItem('mina-line-emoji-'+input.id,input.checked?'1':'0');update()})});function update(){list.querySelector('.check-count').textContent=inputs.filter(i=>i.checked).length}update()});
+</script>
+</body>
+</html>
